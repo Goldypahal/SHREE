@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link, NavLink, useLocation, use
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 
-import { getLocalUser, logoutUser, authAPI, saveUser } from './api';
+import { getLocalUser, authAPI, saveUser } from './api';
 import { productsAPI } from './api';
 
 // Pages
