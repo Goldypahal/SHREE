@@ -13,6 +13,10 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "engines": {
+    "node": ">=22.12.0 <23 || >=24.0.0 <25",
+    "npm": ">=10"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cloudinary": "^1.41.3",
