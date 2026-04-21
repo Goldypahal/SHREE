@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+const Skeleton = ({ className, style }) => (
+  <div className={`skeleton ${className}`} style={style} />
+);
 
 const artisans = [
   { name: "Ananya Sharma", role: "Master Embroidery Artist", special: "Phulkari", bio: "With over 20 years of experience, Ananya preserves the ancient art of thread work.", image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/1_051ee979-99c5-4380-bae6-c470bacfecba.jpg?v=1763961079&width=832" },
@@ -61,8 +65,8 @@ function Artisans() {
               border: '1px solid #f0f0f0',
               gap: '20px',
             }}>
-              <div style={{ width: '100%', height: 'clamp(200px,35vw,280px)', overflow: 'hidden' }}>
-                <img src={artisan.image} alt={artisan.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div style={{ width: '100%', height: 'clamp(200px,35vw,280px)', overflow: 'hidden', position: 'relative' }}>
+                <ImageWithSkeleton src={artisan.image} alt={artisan.name} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: '12px', fontWeight: '700', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '1px' }}>{artisan.special}</span>
@@ -76,6 +80,27 @@ function Artisans() {
         </div>
       </div>
     </div>
+  );
+}
+
+function ImageWithSkeleton({ src, alt }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <>
+      {!loaded && <Skeleton className="skeleton-rect" style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: '100%', zIndex: 1 }} />}
+      <img
+        src={src}
+        alt={alt}
+        onLoad={() => setLoaded(true)}
+        style={{ 
+          width: '100%', 
+          height: '100%', 
+          objectFit: 'cover', 
+          transition: 'all 1s ease',
+          opacity: loaded ? 1 : 0,
+        }}
+      />
+    </>
   );
 }
 

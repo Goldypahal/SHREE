@@ -1,54 +1,54 @@
 export const products = [
   {
     id: 1,
-    name: "Emerald Heritage Lehenga",
-    price: 185000,
-    category: "Couture 2026",
-    description: "Hand-embroidered zardozi on deep emerald silk. A masterpiece of legacy and craftsmanship.",
-    image: "/recent_collection_1_1775935496849.png",
-    gallery: [
-      "/recent_collection_1_1775935496849.png",
-      "/recent_collection_2_1775935517113.png"
-    ],
-    details: ["Pure Silk Base", "Intricate Zardozi Work", "Includes Blouse and Dupatta"]
+    name: 'Rose Pink Zardozi Lehenga',
+    price: 100700,
+    category: 'In Her Moment',
+    description: 'A pink silk lehenga featuring red and gold zardozi, dori, and silk thread embroidered kalis with sequins.',
+    image: 'https://images.perniaspopupshop.com/catalog/product/a/h/AHC3F0116L98_1.jpg',
+    videoUrl: 'https://player.vimeo.com/external/517658760.hd.mp4?s=330c6a2f07ef466037b58941785f76f4e3c15f9b&profile_id=175',
   },
   {
     id: 2,
-    name: "Golden Serenade Saree",
-    price: 125000,
-    category: "Bridal Edit",
-    description: "Heritage gold and cream silk saree with heavy heritage embroidery.",
-    image: "/recent_collection_2_1775935517113.png",
-    gallery: [
-      "/recent_collection_2_1775935517113.png",
-      "/recent_collection_3_1775935536571.png"
-    ],
-    details: ["Heritage Banarasi Silk", "Gold Thread Work", "Custom Tailored Blouse"]
+    name: 'Rani Pink Organza Bridal',
+    price: 189985,
+    category: 'Serenade - Bridal',
+    description: 'High-end rani pink lehenga in organza base with heavy gold zardozi embroidery.',
+    image: 'https://images.perniaspopupshop.com/catalog/product/v/e/VEDC052402_1.jpg',
+    videoUrl: 'https://player.vimeo.com/external/530514102.hd.mp4?s=4567ACDDDEF4927E96A53353933985FB&profile_id=175',
   },
   {
     id: 3,
-    name: "Pastel Ombre Sharara",
-    price: 95000,
-    category: "Signature Sets",
-    description: "Exquisite pastel ombre sharara set with delicate mirror work.",
-    image: "/recent_collection_3_1775935536571.png",
-    gallery: [
-      "/recent_collection_3_1775935536571.png",
-      "/recent_collection_4_1775935554281.png"
-    ],
-    details: ["Lightweight Georgette", "Mirror and Pearl Embellishments", "Hand-dyed Ombre"]
+    name: 'Midnight Black Zardozi Set',
+    price: 165000,
+    category: 'Noctelle',
+    description: 'A deep black silk lehenga with elaborate silver zardozi work.',
+    image: 'https://images.perniaspopupshop.com/catalog/product/a/m/AMRC042403_1.jpg',
+    videoUrl: 'https://player.vimeo.com/external/403003043.hd.mp4?s=123617300c007786438687a7f45a7a1c38e6e584&profile_id=175',
   },
   {
     id: 4,
-    name: "Ivory Sherwani",
-    price: 145000,
-    category: "Menswear",
-    description: "Royal ivory sherwani with tonal embroidery for the modern groom.",
-    image: "/recent_collection_4_1775935554281.png",
-    gallery: [
-      "/recent_collection_4_1775935554281.png",
-      "/recent_collection_1_1775935496849.png"
-    ],
-    details: ["Italian Crepe Base", "Tonal Hand Embroidery", "Slim Fit Silhouette"]
-  }
+    name: 'Ivory Chikankari Lehenga',
+    price: 58900,
+    category: 'Sufiyaana',
+    description: 'Ivory white lehenga with authentic Chikankari-inspired thread work.',
+    image: 'https://images.perniaspopupshop.com/catalog/product/a/a/AAYC052401_1.jpg',
+    videoUrl: 'https://player.vimeo.com/external/391030043.hd.mp4?s=6a2f07ef466037b58941785f76f4e3c15f9b&profile_id=175',
+  },
+  {
+    id: 5,
+    name: 'Purple Silk Bandhani Sharara',
+    price: 68500,
+    category: 'Zooni',
+    description: 'Vibrant purple silk sharara set with traditional Bandhani print.',
+    image: 'https://images.perniaspopupshop.com/catalog/product/p/c/PCBC042601_1.jpg',
+  },
+  {
+    id: 6,
+    name: 'Masterpiece Zardozi Wedding Set',
+    price: 210000,
+    category: 'Bridal Edit',
+    description: 'Masterpiece bridal lehenga with full-body zardozi and kundan work.',
+    image: 'https://images.perniaspopupshop.com/catalog/product/v/e/VEDC052405_1.jpg',
+  },
 ];

@@ -1,31 +1,85 @@
 import { useCart } from '../context/CartContext';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { productsAPI } from '../api';
+import { products as localProducts } from '../data/products';
 
-const archiveItems = [
-  { id: 'a1', era: "Couture 2026", category: "In Her Moment", name: "Rose Pink Couture Lehenga", price: 245000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/1_051ee979-99c5-4380-bae6-c470bacfecba.jpg?v=1763961079&width=1200", description: "A hand-embroidered masterpiece in rose pink with delicate zardozi work." },
-  { id: 'a2', era: "Couture 2026", category: "In Her Moment", name: "Coral Petal Lehenga", price: 185000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/64.jpg?v=1763967817&width=1200", description: "Vibrant pink and coral hues interwoven with traditional heritage motifs." },
-  { id: 'a3', era: "Couture 2026", category: "In Her Moment", name: "Baby Pink Zardozi Set", price: 215000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/70.jpg?v=1763969018&width=1200", description: "Exquisite baby pink couture featuring architectural embroidery." },
-  { id: 'a4', era: "Couture 2026", category: "In Her Moment", name: "Blush Ombre Couture", price: 195000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/59_f9a9df58-3fc1-4bad-8b47-4fa91f15289b.jpg?v=1763967492&width=1200", description: "A regal ombre transition from blush to deep rose in silk." },
-  { id: 'a5', era: "Couture 2026", category: "In Her Moment", name: "Mauve Embroidered Sharara", price: 125000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/67.jpg?v=1763968812&width=1200", description: "Modern silhouettes meet traditional mauve embroidery." },
-  { id: 'a6', era: "Couture 2026", category: "In Her Moment", name: "Emerald Crushed Ensemble", price: 165000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/qw_35130be0-f48f-4b8c-aeec-0c58beaeb876.jpg?v=1771402739&width=1200", description: "A deep emerald green lehenga for the contemporary bride." },
-  { id: 'a7', era: "Bride Story", category: "Real Brides", name: "Nocteele Grey Drape", price: 275000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/WhatsAppImage2026-01-16at13.12.14_1.jpg?v=1769078624&width=1200", description: "Maihma in our signature Nocteele grey drape lehenga." },
-  { id: 'a8', era: "Bride Story", category: "Real Brides", name: "Serenade Pink Mirror", price: 225000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/N_G-DayThree-186.jpg?v=1769077176&width=1200", description: "Natasha Vora shines in our Serenade pink mirror-work lehenga." },
-  { id: 'a9', era: "Bride Story", category: "Real Brides", name: "Navy Blue Tulle Work", price: 235000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/Paolo_Avleenday3_0764.jpg?v=1769076254&width=1200", description: "Avleen Kaur in our navy blue tulle bridal couture." },
-  { id: 'a10', era: "Bride Story", category: "Real Brides", name: "Peach Georgette Couture", price: 185000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/It_sraretofindbrideslikeAnaqatwhoseinnerradianceamplifiesanyandalltheglamonecan.jpg?v=1769068111&width=1200", description: "Anaqat Kamboj in a custom peach georgette chevron lehenga." },
-  { id: 'a11', era: "Collection 2025", category: "Festive", name: "Golden Dust Anarkali", price: 95000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/46_004bfc4c-cc05-44a1-996b-5194d5fb0877.jpg?v=1763966350&width=1200", description: "A flowing golden silhouette emphasizing craftsmanship." },
-  { id: 'a12', era: "Collection 2025", category: "Festive", name: "Ruby Silk Gown", price: 85000, image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/54.jpg?v=1763966774&width=1200", description: "Deep ruby silk gown with hand-applied gota patti." }
-];
+const Skeleton = ({ className, style }) => (
+  <div className={`skeleton ${className}`} style={style} />
+);
+
+const ProductCardSkeleton = () => (
+  <div className="archive-card">
+    <div style={{ aspectRatio: '3/4', background: '#f8f8f8', marginBottom: '25px' }}>
+      <Skeleton className="skeleton-rect" style={{ height: '100%' }} />
+    </div>
+    <div style={{ padding: '0 10px' }}>
+      <Skeleton className="skeleton-title" style={{ width: '40%', height: '14px', marginBottom: '15px' }} />
+      <Skeleton className="skeleton-title" style={{ width: '80%', height: '28px', marginBottom: '15px' }} />
+      <Skeleton className="skeleton-text" style={{ width: '100%', height: '14px', marginBottom: '8px' }} />
+      <Skeleton className="skeleton-text" style={{ width: '90%', height: '14px', marginBottom: '20px' }} />
+      <Skeleton className="skeleton-rect" style={{ width: '150px', height: '20px' }} />
+    </div>
+  </div>
+);
 
 function Archive() {
   const { openProductModal } = useCart();
+  const location = useLocation();
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [activeFilter, setActiveFilter] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const fetched = await productsAPI.getAll();
+        if (fetched.length > 0) {
+          setProducts(fetched);
+        } else {
+          setProducts(localProducts);
+        }
+      } catch (err) {
+        console.error('API Error:', err);
+        setProducts(localProducts);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const filterFromState = location.state?.filterCategory;
+    if (filterFromState) {
+      setActiveFilter(filterFromState);
+    } else {
+      setActiveFilter(null);
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    if (!activeFilter) {
+      setFilteredProducts(products);
+    } else {
+      const lowerFilter = activeFilter.toLowerCase();
+      const filtered = products.filter(p => 
+        p.category.toLowerCase().includes(lowerFilter) || 
+        p.name.toLowerCase().includes(lowerFilter) ||
+        p.description.toLowerCase().includes(lowerFilter)
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [activeFilter, products]);
 
   return (
     <div className="archive-page" style={{ background: '#fff' }}>
-
-      {/* Full-screen Hero — transparent navbar overlays this */}
+      {/* Full-screen Hero */}
       <div style={{
         position: 'relative',
         width: '100%',
-        height: '100vh',
+        height: '60vh',
         overflow: 'hidden',
       }}>
         <img
@@ -33,60 +87,140 @@ function Archive() {
           alt="Gallery Hero"
           style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65)' }}
         />
-        {/* Gradient overlay for text legibility */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.55) 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%)',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'flex-end',
-          alignItems: 'flex-start',
-          padding: 'clamp(25px,5vw,80px)',
+          justifyContent: 'center',
+          alignItems: 'center',
           color: 'white',
+          textAlign: 'center',
+          padding: '20px'
         }}>
           <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '5px', color: 'var(--accent)', fontWeight: '700', marginBottom: '20px' }}>
-            Masterpiece Archives
+            The Vault
           </span>
-          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(36px,6vw,90px)', fontWeight: '400', letterSpacing: 'clamp(2px,0.5vw,4px)', lineHeight: '1', marginBottom: '20px', textTransform: 'uppercase', wordBreak: 'break-word' }}>
-            The Curated<br />Vault
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(32px,5vw,64px)', fontWeight: '400', letterSpacing: '2px', textTransform: 'uppercase' }}>
+            {activeFilter ? activeFilter : 'CURATED ARCHIVES'}
           </h1>
-          <p style={{ fontSize: 'clamp(13px,1.3vw,15px)', color: 'rgba(255,255,255,0.75)', maxWidth: '480px', lineHeight: '1.8', letterSpacing: '0.5px' }}>
-            A legacy of threads, moments, and heritage. Every piece is a testament to the artisans of Punjab.
-          </p>
+          {activeFilter && (
+            <button 
+              onClick={() => setActiveFilter(null)}
+              style={{ 
+                marginTop: '30px', 
+                background: 'rgba(255,255,255,0.1)', 
+                border: '1px solid rgba(255,255,255,0.3)', 
+                color: 'white', 
+                padding: '10px 25px', 
+                fontSize: '11px', 
+                letterSpacing: '2px', 
+                cursor: 'pointer',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '50px' 
+              }}
+            >
+              BROWSE ALL COLLECTIONS
+            </button>
+          )}
         </div>
       </div>
 
       {/* Archive Grid */}
-      <div className="container" style={{ paddingTop: 'clamp(60px,8vw,100px)', paddingBottom: 'clamp(60px,10vw,120px)' }}>
-        <div className="archive-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%,280px), 1fr))', gap: 'clamp(30px,4vw,50px)' }}>
-          {archiveItems.map((item, i) => (
-            <div key={i} className="archive-card reveal" style={{ opacity: 1, transform: 'none', cursor: 'pointer' }} onClick={() => openProductModal(item)}>
-              <div style={{ aspectRatio: '3/4', background: '#f8f8f8', marginBottom: '25px', overflow: 'hidden' }}>
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 1s ease' }}
-                  onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
-                />
+      <div className="container" style={{ paddingTop: '80px', paddingBottom: '120px' }}>
+        {loading ? (
+          <div className="archive-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%,300px), 1fr))', gap: '50px' }}>
+            {[1, 2, 3, 4, 5, 6].map(i => <ProductCardSkeleton key={i} />)}
+          </div>
+        ) : filteredProducts.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '100px 0' }}>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', color: '#666' }}>Moment not found in the archives.</h3>
+            <p style={{ color: '#999', marginTop: '10px' }}>Try exploring our other signature edits.</p>
+            <button 
+              onClick={() => setActiveFilter(null)}
+              style={{ marginTop: '30px', background: 'none', border: 'none', borderBottom: '1px solid black', paddingBottom: '5px', cursor: 'pointer', fontSize: '12px', letterSpacing: '1px' }}
+            >
+              BROWSE EVERYTHING
+            </button>
+          </div>
+        ) : (
+          <div className="archive-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%,350px), 1fr))', gap: '60px 40px' }}>
+            {filteredProducts.map((item, i) => (
+              <div key={item._id || i} className="archive-card reveal active" style={{ cursor: 'pointer' }} onClick={() => openProductModal(item)}>
+                <div style={{ aspectRatio: '3/4', background: '#f8f8f8', marginBottom: '25px', overflow: 'hidden', position: 'relative' }}>
+                  <MediaWithSkeleton item={item} />
+                </div>
+                <div style={{ padding: '0 10px' }}>
+                  <span style={{ fontSize: '10px', color: 'var(--accent)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px' }}>{item.category}</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '15px' }}>
+                    <h3 style={{ fontSize: '20px', margin: 0, fontFamily: 'var(--font-serif)', fontWeight: '400' }}>{item.name}</h3>
+                    <span style={{ fontSize: '14px', color: '#666' }}>₹{item.price?.toLocaleString()}</span>
+                  </div>
+                  <p style={{ color: '#888', fontSize: '14px', lineHeight: '1.7', marginTop: '15px', height: '4.8em', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+                    {item.description}
+                  </p>
+                  <button 
+                    className="view-details-btn"
+                    style={{ marginTop: '20px', border: 'none', background: 'none', padding: 0, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid #ccc', cursor: 'pointer' }}
+                  >
+                    View Couture Details
+                  </button>
+                </div>
               </div>
-              <div style={{ padding: '0 10px' }}>
-                <span style={{ fontSize: '10px', color: 'var(--accent)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px' }}>{item.era} — {item.category}</span>
-                <h3 style={{ fontSize: '22px', margin: '15px 0', fontFamily: 'var(--font-serif)', fontWeight: '400' }}>{item.name}</h3>
-                <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.7' }}>{item.description}</p>
-                <button 
-                   style={{ marginTop: '20px', background: 'transparent', border: 'none', borderBottom: '1px solid black', paddingBottom: '5px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '2px', cursor: 'pointer', fontWeight: '600' }}
-                   onClick={(e) => { e.stopPropagation(); openProductModal(item); }}
-                >
-                  View Details & Reviews
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
+function MediaWithSkeleton({ item }) {
+  const [loaded, setLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div 
+      style={{ width: '100%', height: '100%', position: 'relative' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {!loaded && <Skeleton className="skeleton-rect" style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: '100%', zIndex: 1 }} />}
+      
+      {isHovered && item.videoUrl ? (
+        <video
+          src={item.videoUrl}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover',
+            transition: 'opacity 0.5s ease',
+            opacity: loaded ? 1 : 0
+          }}
+          onLoadedData={() => setLoaded(true)}
+        />
+      ) : (
+        <img
+          src={item.image}
+          alt={item.name}
+          onLoad={() => setLoaded(true)}
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover', 
+            transition: 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
+            opacity: loaded ? 1 : 0,
+            transform: loaded && isHovered ? 'scale(1.05)' : 'scale(1)'
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
 export default Archive;
+

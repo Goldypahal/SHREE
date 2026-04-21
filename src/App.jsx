@@ -18,6 +18,44 @@ import Checkout from './pages/Checkout';
 import { products as localProducts } from './data/products';
 import { useCart } from './context/CartContext';
 
+// --- SKELETON COMPONENTS ---
+const Skeleton = ({ className, style }) => (
+  <div className={`skeleton ${className}`} style={style} />
+);
+
+const ProductCardSkeleton = () => (
+  <div className="carousel-item">
+    <div className="carousel-card">
+      <Skeleton className="skeleton-rect" style={{ height: '500px' }} />
+    </div>
+    <div className="product-card-footer" style={{ marginTop: '15px' }}>
+      <Skeleton className="skeleton-title" style={{ width: '70%', height: '20px' }} />
+      <Skeleton className="skeleton-text" style={{ width: '40%', height: '14px' }} />
+      <Skeleton className="skeleton-rect" style={{ height: '40px', marginTop: '10px' }} />
+    </div>
+  </div>
+);
+
+const HeroSkeleton = () => (
+  <section className="hero-video-container" style={{ background: '#f8f8f8' }}>
+    <Skeleton className="skeleton-rect" />
+    <div className="hero-content">
+      <Skeleton className="skeleton-title" style={{ width: '150px', height: '15px', marginBottom: '20px' }} />
+      <Skeleton className="skeleton-title" style={{ width: '70%', height: '100px', marginBottom: '20px' }} />
+      <Skeleton className="skeleton-text" style={{ width: '40%', height: '20px', marginBottom: '40px' }} />
+      <div className="hero-btns">
+        <Skeleton className="skeleton-rect" style={{ width: '200px', height: '50px' }} />
+      </div>
+    </div>
+  </section>
+);
+
+const VideoSkeleton = () => (
+  <div className="grid-item">
+    <Skeleton className="skeleton-rect" />
+  </div>
+);
+
 // Scroll to top on every route change
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -45,7 +83,7 @@ const megaMenuData = {
     image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/70.jpg?v=1763969018&width=1200",
     links: [
       { title: "Craftsmanship", items: ["Zardozi", "Gota Patti", "Thread Work"] },
-      { title: "Meet the Masters", items: ["Studio Punjab", "The Archive House"] }
+      { title: "Meet the Masters", items: ["Studio Punjab"] }
     ]
   },
   VISION: {
@@ -62,12 +100,20 @@ const megaMenuData = {
 const ProductCard = ({ product }) => {
   const { openProductModal, addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState('M');
+  const [imageLoaded, setImageLoaded] = useState(false);
   
   return (
     <div className="carousel-item">
       {/* Clickable image card */}
       <div className="carousel-card reveal" onClick={() => openProductModal(product)}>
-        <img src={product.image} alt={product.name} loading="lazy" />
+        {!imageLoaded && <Skeleton className="skeleton-rect" style={{ position: 'absolute', top: 0, left: 0, height: '100%', zIndex: 1 }} />}
+        <img 
+          src={product.image} 
+          alt={product.name} 
+          loading="lazy" 
+          onLoad={() => setImageLoaded(true)}
+          style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.5s ease' }}
+        />
         <div className="carousel-overlay">
           <span className="carousel-tag">{product.category}</span>
           <h3 className="carousel-name">{product.name}</h3>
@@ -153,6 +199,7 @@ function LazyVideo({ src, poster, label, href }) {
 
   return (
     <div className="grid-item" ref={ref}>
+      {!inView && <Skeleton className="skeleton-rect" style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: '100%', zIndex: 0 }} />}
       <video
         ref={videoRef}
         src={inView ? src : undefined}
@@ -222,8 +269,20 @@ function Home() {
   }, [products, isPaused]);
 
   if (loading) return (
-    <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'white' }}>
-      <p style={{ letterSpacing: '3px', color: '#999', fontSize: '12px', textTransform: 'uppercase' }}>Entering the Sanctuary...</p>
+    <div className="home">
+      <HeroSkeleton />
+      <section className="collection-preview container">
+        <div className="section-header">
+          <Skeleton className="skeleton-title" style={{ margin: '0 auto 20px', width: '200px' }} />
+          <Skeleton className="skeleton-title" style={{ margin: '0 auto 20px', width: '400px', height: '60px' }} />
+        </div>
+        <div className="carousel-container" style={{ display: 'flex', gap: '20px', overflow: 'hidden' }}>
+          {[1, 2, 3, 4].map(i => <ProductCardSkeleton key={i} />)}
+        </div>
+      </section>
+      <section className="grid-loop-section">
+        {[1, 2, 3, 4].map(i => <VideoSkeleton key={i} />)}
+      </section>
     </div>
   );
 
@@ -510,12 +569,14 @@ function Layout({ children }) {
                 <div key={idx} className="mega-link-block">
                   <h4>{group.title}</h4>
                   <ul>
-                    {group.items.map((item, i) => {
-                      const destPath = activeMenu === 'THE_COLLECTIVE' ? '/archive' : activeMenu === 'ARTISANS' ? '/artisans' : '/vision';
+                      {group.items.map((item, i) => {
+                      const isArtisans = activeMenu === 'ARTISANS';
+                      const destPath = isArtisans ? '/artisans' : '/archive';
                       return (
                         <li key={i}>
                           <Link 
                             to={destPath} 
+                            state={{ filterCategory: item }}
                             style={{ color: 'inherit', textDecoration: 'none', display: 'block', padding: '4px 0' }}
                             onClick={() => { setActiveMenu(null); setMobileMenuOpen(false); }}
                           >
@@ -720,23 +781,53 @@ const AuthModal = ({ isOpen, onClose }) => {
   );
 };
 
-const SearchOverlay = ({ isOpen, onClose }) => (
+const SearchOverlay = ({ isOpen, onClose }) => {
+  const [query, setQuery] = useState('');
+  const navigate = useNavigate();
 
+  const handleSearch = (e) => {
+    if (e.key === 'Enter' && query.trim()) {
+      navigate('/archive', { state: { filterCategory: query.trim() } });
+      onClose();
+      setQuery('');
+    }
+  };
 
-  <div className={`search-overlay ${isOpen ? 'active' : ''}`}>
-    <div className="search-close" onClick={onClose}><i className="fas fa-times"></i></div>
-    <div className="search-input-container">
-      <input type="text" placeholder="Explore the collections..." autoFocus />
+  return (
+    <div className={`search-overlay ${isOpen ? 'active' : ''}`}>
+      <div className="search-close" onClick={onClose}><i className="fas fa-times"></i></div>
+      <div className="search-input-container">
+        <input 
+          type="text" 
+          placeholder="Explore the collections (e.g. In Her Moment, Zooni...)" 
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleSearch}
+          autoFocus 
+        />
+        <p style={{ color: 'rgba(255,255,255,0.4)', marginTop: '20px', fontSize: '12px', letterSpacing: '1px' }}>PRESS ENTER TO EXPLORE THE VAULT</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const ProductDetailModal = ({ isOpen, onClose, product, addToCart }) => {
   const [selectedSize, setSelectedSize] = useState('M');
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('description');
   const [isHovered, setIsHovered] = useState(false);
+  const [sareeLength, setSareeLength] = useState(6);
   const { openProductModal } = useCart();
+
+  const isSaree = product?.name?.toLowerCase().includes('saree') || product?.category?.toLowerCase().includes('saree');
+  
+  const calculatePrice = () => {
+    if (!product) return 0;
+    if (isSaree) {
+      return Math.round((product.price / 6) * sareeLength);
+    }
+    return product.price;
+  };
 
   const images = (product?.gallery && product.gallery.length > 0) 
     ? product.gallery 
@@ -842,29 +933,51 @@ const ProductDetailModal = ({ isOpen, onClose, product, addToCart }) => {
                 <span className="rating-text">{averageRating} ({reviews.length} Reviews)</span>
               </div>
 
-              <p className="product-price-premium">₹{product.price.toLocaleString()}</p>
+              <p className="product-price-premium">₹{calculatePrice().toLocaleString()}</p>
               
               <div className="product-actions-premium">
-                <div className="size-selector-header">
-                  <span>SELECT SIZE</span>
-                  <button className="size-guide-btn">SIZE GUIDE</button>
-                </div>
-                <div className="size-options">
-                  {['S', 'M', 'L', 'XL'].map(size => (
-                    <button 
-                      key={size}
-                      className={`size-option-btn ${selectedSize === size ? 'active' : ''}`}
-                      onClick={() => setSelectedSize(size)}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
+                {isSaree ? (
+                  <div className="saree-length-selector" style={{ marginBottom: '20px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '12px', letterSpacing: '1px' }}>
+                      <span>SELECT LENGTH</span>
+                      <span>{sareeLength}m</span>
+                    </div>
+                    <input 
+                      type="range" 
+                      min="1" 
+                      max="6" 
+                      step="0.5" 
+                      value={sareeLength} 
+                      onChange={(e) => setSareeLength(parseFloat(e.target.value))}
+                      style={{ width: '100%' }}
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <div className="size-selector-header">
+                      <span>SELECT SIZE</span>
+                      <button className="size-guide-btn">SIZE GUIDE</button>
+                    </div>
+                    <div className="size-options">
+                      {['S', 'M', 'L', 'XL'].map(size => (
+                        <button 
+                          key={size}
+                          className={`size-option-btn ${selectedSize === size ? 'active' : ''}`}
+                          onClick={() => setSelectedSize(size)}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
 
                 <button 
                   className="add-to-bag-premium"
                   onClick={() => {
-                    addToCart(product, selectedSize);
+                    const finalPrice = calculatePrice();
+                    const itemToAdd = { ...product, price: finalPrice };
+                    addToCart(itemToAdd, isSaree ? `${sareeLength}m` : selectedSize);
                     onClose();
                   }}
                 >
