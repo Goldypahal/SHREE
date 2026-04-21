@@ -83,7 +83,7 @@ function Archive() {
         overflow: 'hidden',
       }}>
         <img
-          src="https://www.tamannapunjabikapoor.com/cdn/shop/files/1_051ee979-99c5-4380-bae6-c470bacfecba.jpg?v=1763961079&width=1920"
+          src="/images/catalog/gallery-hero.jpg"
           alt="Gallery Hero"
           style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65)' }}
         />
