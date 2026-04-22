@@ -14,7 +14,7 @@ export const products = [
     price: 189985,
     category: 'Serenade - Bridal',
     description: 'High-end rani pink lehenga in organza base with heavy gold zardozi embroidery.',
-    image: '/images/catalog/rani-pink.jpg',
+    image: '/images/catalog/bridal-gold-red.png',
     videoUrl: 'https://player.vimeo.com/external/530514102.hd.mp4?s=4567ACDDDEF4927E96A53353933985FB&profile_id=175',
   },
   {
@@ -23,7 +23,7 @@ export const products = [
     price: 165000,
     category: 'Noctelle',
     description: 'A deep black silk lehenga with elaborate silver zardozi work.',
-    image: '/images/catalog/black-zardozi.jpg',
+    image: '/images/catalog/evening-black-silver.png',
     videoUrl: 'https://player.vimeo.com/external/403003043.hd.mp4?s=123617300c007786438687a7f45a7a1c38e6e584&profile_id=175',
   },
   {
@@ -32,7 +32,7 @@ export const products = [
     price: 58900,
     category: 'Sufiyaana',
     description: 'Ivory white lehenga with authentic Chikankari-inspired thread work.',
-    image: '/images/catalog/ivory-chikankari.jpg',
+    image: '/images/catalog/ivory-chikankari-new.png',
     videoUrl: 'https://player.vimeo.com/external/391030043.hd.mp4?s=6a2f07ef466037b58941785f76f4e3c15f9b&profile_id=175',
   },
   {
@@ -41,7 +41,7 @@ export const products = [
     price: 68500,
     category: 'Zooni',
     description: 'Vibrant purple silk sharara set with traditional Bandhani print.',
-    image: '/images/catalog/purple-sharara.jpg',
+    image: '/images/catalog/royal-purple-sharara.png',
   },
   {
     id: 6,
@@ -49,6 +49,6 @@ export const products = [
     price: 210000,
     category: 'Bridal Edit',
     description: 'Masterpiece bridal lehenga with full-body zardozi and kundan work.',
-    image: '/images/catalog/rani-pink.jpg',
+    image: '/images/catalog/bridal-gold-red.png',
   },
 ];

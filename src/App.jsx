@@ -70,7 +70,7 @@ const megaMenuData = {
   THE_COLLECTIVE: {
     title: "The Collective",
     intro: "Ever evolving, timeless at heart. A curated sanctuary of Indian couture that speaks to the modern soul while honoring the heritage of Punjab.",
-    image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/1_051ee979-99c5-4380-bae6-c470bacfecba.jpg?v=1763961079&width=1200",
+    image: "/images/catalog/pink-lehenga.jpg",
     links: [
       { title: "Trending Collections", items: ["In Her Moment", "Serenade - Bridal", "Noctelle", "Sufiyaana"] },
       { title: "Signature Edits", items: ["Zooni", "Bridal Edit", "Maahru", "Amirah"] },
@@ -80,7 +80,7 @@ const megaMenuData = {
   ARTISANS: {
     title: "Artisans",
     intro: "Intricate embroidery work and precision craftsmanship. Our artisans breathe life into every thread, creating legacies that turn moments into memories.",
-    image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/70.jpg?v=1763969018&width=1200",
+    image: "/images/catalog/rani-pink.jpg",
     links: [
       { title: "Craftsmanship", items: ["Zardozi", "Gota Patti", "Thread Work"] },
       { title: "Meet the Masters", items: ["Studio Punjab"] }
@@ -89,7 +89,7 @@ const megaMenuData = {
   VISION: {
     title: "Vision",
     intro: "Where Moments Turn Into Memories. Our philosophy is rooted in old-world charm, designed for easy cuts that ignore the noise of passing trends.",
-    image: "https://www.tamannapunjabikapoor.com/cdn/shop/files/59_f9a9df58-3fc1-4bad-8b47-4fa91f15289b.jpg?v=1763967492&width=1200",
+    image: "/images/catalog/ivory-chikankari.jpg",
     links: [
       { title: "Our Story", items: ["Heritage", "Modernity"] },
       { title: "Sustainability", items: ["Handloom", "Ethical Craft"] }
@@ -101,19 +101,48 @@ const ProductCard = ({ product }) => {
   const { openProductModal, addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState('M');
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef(null);
   
   return (
     <div className="carousel-item">
       {/* Clickable image card */}
-      <div className="carousel-card reveal" onClick={() => openProductModal(product)}>
+      <div 
+        className="carousel-card reveal" 
+        onClick={() => openProductModal(product)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {!imageLoaded && <Skeleton className="skeleton-rect" style={{ position: 'absolute', top: 0, left: 0, height: '100%', zIndex: 1 }} />}
-        <img 
-          src={product.image} 
-          alt={product.name} 
-          loading="lazy" 
-          onLoad={() => setImageLoaded(true)}
-          style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.5s ease' }}
-        />
+        
+        {isHovered && product.videoUrl ? (
+          <video
+            ref={videoRef}
+            src={product.videoUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="product-card-video"
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              objectFit: 'cover',
+              position: 'absolute',
+              top: 0,
+              left: 0
+            }}
+          />
+        ) : (
+          <img 
+            src={product.image} 
+            alt={product.name} 
+            loading="lazy" 
+            onLoad={() => setImageLoaded(true)}
+            style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.5s ease' }}
+          />
+        )}
+
         <div className="carousel-overlay">
           <span className="carousel-tag">{product.category}</span>
           <h3 className="carousel-name">{product.name}</h3>
@@ -166,10 +195,10 @@ const ProductCard = ({ product }) => {
 
 // LazyVideoGrid — grid videos only load & play when scrolled into view
 const GRID_VIDEOS = [
-  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/20f60df686684776b5563f340775bce0/20f60df686684776b5563f340775bce0.HD-1080p-7.2Mbps-63005057.mp4?v=0", poster: "https://www.tamannapunjabikapoor.com/cdn/shop/files/64.jpg?v=1763967817&width=800", label: "In Her Moment", href: "/archive" },
-  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/6896323f8e1c49c5b6fdddb611577180/6896323f8e1c49c5b6fdddb611577180.HD-1080p-7.2Mbps-52878130.mp4?v=0", poster: "https://www.tamannapunjabikapoor.com/cdn/shop/files/70.jpg?v=1763969018&width=800", label: "Studio Craft", href: "/artisans" },
-  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/53f6a02bc5b443989356d04796895b8c/53f6a02bc5b443989356d04796895b8c.HD-1080p-7.2Mbps-61223084.mp4?v=0", poster: "https://www.tamannapunjabikapoor.com/cdn/shop/files/59_f9a9df58-3fc1-4bad-8b47-4fa91f15289b.jpg?v=1763967492&width=800", label: "Noctelle Edit", href: "/archive" },
-  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/20f60df686684776b5563f340775bce0/20f60df686684776b5563f340775bce0.HD-1080p-7.2Mbps-63005057.mp4?v=0", poster: "https://www.tamannapunjabikapoor.com/cdn/shop/files/46_004bfc4c-cc05-44a1-996b-5194d5fb0877.jpg?v=1763966350&width=800", label: "Heritage Bridal", href: "/archive" },
+  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/20f60df686684776b5563f340775bce0/20f60df686684776b5563f340775bce0.HD-1080p-7.2Mbps-63005057.mp4?v=0", poster: "/images/catalog/pink-lehenga.jpg", label: "In Her Moment", href: "/archive" },
+  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/6896323f8e1c49c5b6fdddb611577180/6896323f8e1c49c5b6fdddb611577180.HD-1080p-7.2Mbps-52878130.mp4?v=0", poster: "/images/catalog/rani-pink.jpg", label: "Studio Craft", href: "/artisans" },
+  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/53f6a02bc5b443989356d04796895b8c/53f6a02bc5b443989356d04796895b8c.HD-1080p-7.2Mbps-61223084.mp4?v=0", poster: "/images/catalog/black-zardozi.jpg", label: "Noctelle Edit", href: "/archive" },
+  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/20f60df686684776b5563f340775bce0/20f60df686684776b5563f340775bce0.HD-1080p-7.2Mbps-63005057.mp4?v=0", poster: "/images/catalog/marwari-lehenga.jpg", label: "Heritage Bridal", href: "/archive" },
 ];
 
 function LazyVideo({ src, poster, label, href }) {
@@ -246,6 +275,10 @@ function Home() {
         setProducts(localProducts);
       } finally {
         setLoading(false);
+        // Trigger reveal animation after a short delay to ensure DOM is updated
+        setTimeout(() => {
+          window.dispatchEvent(new Event('scroll'));
+        }, 100);
       }
     };
     fetchProducts();
@@ -299,8 +332,8 @@ function Home() {
           loop 
           playsInline 
           className="hero-video"
-          preload="none"
-          poster="https://www.tamannapunjabikapoor.com/cdn/shop/files/1_051ee979-99c5-4380-bae6-c470bacfecba.jpg?v=1763961079&width=1200"
+          preload="auto"
+          poster="/images/catalog/gallery-hero.jpg"
           src="https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/a8127fab6c7c4761b4d4129d0b410331/a8127fab6c7c4761b4d4129d0b410331.HD-1080p-4.8Mbps-63953119.mp4?v=0"
         />
 
@@ -354,7 +387,7 @@ function Home() {
       <section className="designers-section reveal">
         <div className="container designer-container">
           <div className="designer-image">
-            <img src="https://www.tamannapunjabikapoor.com/cdn/shop/files/70.jpg?v=1763969018&width=1200" alt="Bridal Craft" />
+            <img src="/images/catalog/rani-pink.jpg" alt="Bridal Craft" />
           </div>
           <div className="designer-text">
             <span className="designer-tag">The Philosophy</span>
@@ -371,7 +404,7 @@ function Home() {
       {/* Visit Section */}
       <section className="visit-section reveal">
         <div className="visit-bg">
-          <img src="https://www.tamannapunjabikapoor.com/cdn/shop/files/64.jpg?v=1763967817&width=3840" alt="Luxury Studio" />
+          <img src="/images/catalog/gallery-hero.jpg" alt="Luxury Studio" />
           <div className="visit-overlay">
             <h2>LUXURY, TAILORED TO PERFECTION</h2>
             <div className="visit-actions">
