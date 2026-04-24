@@ -20,7 +20,31 @@
 ## Introduction Script
 > *"I was responsible for the entire frontend of SHREE — building the user interface using React 19 and Vite. My work includes everything the user sees and interacts with: the hero section, product carousel, cart drawer, checkout flow, and all 8 pages. I also designed the complete CSS design system with luxury aesthetics — animations, skeleton loaders, and a fully responsive layout."*
 
-## Contributions
+## Core Technical Implementations
+
+### 1. Global State Management (Context API)
+Instead of passing props down multiple levels (prop drilling), I implemented a centralized `CartContext`. It wraps the entire application and provides a single source of truth for:
+- `cartItems` (Array of objects in the bag)
+- `cartCount` & `cartTotal` (Derived dynamic states)
+- Core actions: `addToCart`, `removeFromCart`, and `updateQuantity`.
+This allows any component, from the Navbar bag icon to the Product Modal, to seamlessly read and update the cart.
+
+### 2. Performance Optimization (Lazy Loading)
+To ensure the site loads quickly despite having heavy luxury video assets, I implemented an `IntersectionObserver` via the `LazyVideo` component.
+- **How it works:** The videos in the 4-grid section do not load on initial page load. The observer monitors when the user scrolls near the grid (within 200px).
+- **Result:** Only when the user is about to see the videos does the `src` attribute populate and the video plays. This saves massive initial bandwidth.
+
+### 3. User Experience (Skeleton Loaders & Offline Fallbacks)
+Fetching products from the backend takes time. I prioritized UX by handling these states gracefully:
+- **Skeleton Loaders:** I designed CSS-based animated `HeroSkeleton`, `ProductCardSkeleton`, and `VideoSkeleton` components. These show a shimmering grey layout while data loads, preventing jarring layout shifts.
+- **Offline Fallback:** I integrated a local data fallback (`products.js`). If the backend server fails or is offline, the frontend catches the error and seamlessly falls back to serving local dummy data, ensuring the app never appears broken.
+
+### 4. Advanced UI Features & Animations
+- **Mega Menu:** Built a complex hover-based mega menu for desktop navigation that maps hierarchical category data alongside dynamic visual showcase images.
+- **Scroll Reveal Animations:** Implemented a scroll event listener that adds an `.active` class to elements with a `.reveal` tag as they enter the viewport, triggering smooth CSS fade-up transitions.
+- **Modals & Drawers:** Built custom overlays (`AuthModal`, `CartDrawer`) using fixed positioning. I specifically solved z-index and backdrop-blur styling issues to ensure luxury, clean overlays without screen distortion.
+
+## Complete Contributions List
 - Built the React SPA using **Vite** as the build tool
 - Created the **mega-menu navigation** with hover dropdowns and mobile sidebar
 - Implemented the **hero video section** with autoplay and poster fallback
