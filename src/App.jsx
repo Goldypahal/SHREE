@@ -513,6 +513,21 @@ function Layout({ children }) {
             <button onClick={() => setSearchOpen(true)} aria-label="Search">
               <i className="fas fa-search"></i>
             </button>
+            {/* Account Button */}
+            <NavLink
+              to={user ? '/dashboard' : '/auth'}
+              className="nav-account-btn"
+              aria-label="Account"
+              title={user ? `Signed in as ${user.name}` : 'Sign In'}
+            >
+              {user ? (
+                <span className="nav-user-avatar">
+                  {user.name?.charAt(0).toUpperCase()}
+                </span>
+              ) : (
+                <i className="fas fa-user"></i>
+              )}
+            </NavLink>
             <button className="bag-btn-nav" onClick={() => setCartOpen(true)} aria-label="Shopping Bag">
               <i className="fas fa-shopping-bag"></i>
               {cartCount > 0 && <span className="bag-count">{cartCount}</span>}
