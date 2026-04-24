@@ -1,0 +1,211 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <meta charset="utf-8">
+    <title>Role_C_Database_Cloud</title>
+    <style>
+        body { font-family: 'Calibri', sans-serif; font-size: 11pt; line-height: 1.5; color: #000; }
+        h1 { color: #2c3e50; font-size: 20pt; border-bottom: 2px solid #2c3e50; padding-bottom: 5px; }
+        h2 { color: #34495e; font-size: 16pt; margin-top: 20px; }
+        h3 { color: #7f8c8d; font-size: 14pt; }
+        p { margin-bottom: 10px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #bdc3c7; padding: 8px; text-align: left; }
+        th { background-color: #ecf0f1; }
+        blockquote { border-left: 4px solid #bdc3c7; padding-left: 15px; color: #555; font-style: italic; background-color: #f9f9f9; padding: 10px; margin: 10px 0; }
+        code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 10pt; }
+    </style>
+</head>
+<body>
+    <h1>SHREE Collective — 3-Person Team Walkthrough &amp; Viva Guide</h1>
+<blockquote>
+<p><strong>Project:</strong> SHREE — Luxury Indian Couture E-Commerce Platform
+<strong>Team:</strong> 3 Members | Frontend · Backend · Database &amp; Cloud</p>
+</blockquote>
+<hr>
+<h2>👥 TEAM DIVISION</h2>
+<table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Role</th>
+<th>Owns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Person A</strong></td>
+<td>Frontend Developer</td>
+<td>React UI, Pages, Cart, Animations, Routing</td>
+</tr>
+<tr>
+<td><strong>Person B</strong></td>
+<td>Backend Developer</td>
+<td>Node.js, Express API, Auth, Routes, Middleware</td>
+</tr>
+<tr>
+<td><strong>Person C</strong></td>
+<td>Database &amp; Cloud Engineer</td>
+<td>MongoDB, Mongoose Models, Cloudinary, Firebase, Deployment</td>
+</tr>
+</tbody></table>
+<hr>
+<h1>🅒 PERSON C — Database &amp; Cloud Engineer</h1>
+<h2>Introduction Script</h2>
+<blockquote>
+<p><em>&quot;I was responsible for everything related to data storage and cloud services in SHREE. I designed and implemented all 4 MongoDB database collections using Mongoose, configured Firebase for authentication, set up Cloudinary for product image hosting, and handled the project&#39;s deployment and environment configuration.&quot;</em></p>
+</blockquote>
+<h2>Contributions</h2>
+<ul>
+<li>Designed all <strong>4 Mongoose schemas</strong>: User, Product, Order, Inquiry</li>
+<li>Implemented <strong>password hashing</strong> hook in the User model (<code>pre(&#39;save&#39;)</code>)</li>
+<li>Implemented <strong>sub-documents</strong>: <code>savedAddresses[]</code> in User, <code>items[]</code> in Order</li>
+<li>Set up <strong>MongoDB Atlas</strong> cloud cluster connection via <code>config/db.js</code></li>
+<li>Configured <strong>Firebase</strong> project (<code>shree-studio-2026</code>) with Auth, Firestore, and Storage</li>
+<li>Set up <strong>Cloudinary</strong> for product image CDN (with Multer integration)</li>
+<li>Wrote <strong>Firestore security rules</strong> (<code>firestore.rules</code>)</li>
+<li>Created <strong>Firestore indexes</strong> (<code>firestore.indexes.json</code>)</li>
+<li>Managed the <strong>seed script</strong> for populating initial product catalog</li>
+<li>Handled all <strong>environment variables</strong> (<code>.env</code>, <code>.env.example</code>)</li>
+<li>Configured <strong>Firebase Hosting</strong> (<code>firebase.json</code>) for frontend deployment</li>
+</ul>
+<h2>How to Walk Through (Demo Script)</h2>
+<p><strong>Step 1 — Database Design</strong></p>
+<blockquote>
+<p><em>&quot;We use MongoDB — a NoSQL document database — because our product data is flexible. A lehenga has different attributes than a sherwani. Mongoose gives us schema validation, middleware hooks, and model methods on top of MongoDB.&quot;</em></p>
+</blockquote>
+<p><strong>Step 2 — User Model</strong></p>
+<blockquote>
+<p><em>&quot;The User schema stores name, email, hashed password, Google ID for OAuth, role (collector/admin), and an array of saved shipping addresses as sub-documents. The password is never returned in queries by default — <code>select: false</code> handles this.&quot;</em></p>
+</blockquote>
+<p><strong>Step 3 — Product Model</strong></p>
+<blockquote>
+<p><em>&quot;Products store name, price, category, description, a primary image URL, a gallery array of images, detail strings like fabric type, an inStock boolean, and a reviews array. This flexible structure handles all product types.&quot;</em></p>
+</blockquote>
+<p><strong>Step 4 — Order Model</strong></p>
+<blockquote>
+<p><em>&quot;Orders reference the User via ObjectId (like a foreign key). They store an items array (sub-documents with productId, name, price, size, quantity), total, payment method, shipping address, and a status enum with 5 states.&quot;</em></p>
+</blockquote>
+<p><strong>Step 5 — Cloudinary</strong></p>
+<blockquote>
+<p><em>&quot;Product images are uploaded to Cloudinary — a cloud CDN. The admin uploads an image via the product form, Multer handles the file, and <code>multer-storage-cloudinary</code> streams it directly to Cloudinary. The returned URL is stored in MongoDB.&quot;</em></p>
+</blockquote>
+<p><strong>Step 6 — Firebase</strong></p>
+<blockquote>
+<p><em>&quot;Firebase is configured for Google Sign-In (Auth), Firestore as a secondary database option, and Hosting for deploying the frontend. The project ID is <code>shree-studio-2026</code>.&quot;</em></p>
+</blockquote>
+<hr>
+<h2>🅒 Person C — Viva Questions</h2>
+<p><strong>Q1. What is MongoDB?</strong></p>
+<blockquote>
+<p>MongoDB is a NoSQL document database storing data as JSON-like BSON documents. SHREE uses it for all 4 collections: users, products, orders, inquiries.</p>
+</blockquote>
+<p><strong>Q2. What is Mongoose?</strong></p>
+<blockquote>
+<p>Mongoose is an ODM (Object Document Mapper) for MongoDB. It provides schemas, validation, middleware hooks (<code>pre</code>/<code>post</code>), and model methods.</p>
+</blockquote>
+<p><strong>Q3. What is a Mongoose Schema?</strong></p>
+<blockquote>
+<p>A schema defines the structure, types, and validation rules for documents. Example: Product schema defines <code>name: String</code>, <code>price: Number</code>, <code>inStock: Boolean</code>, etc.</p>
+</blockquote>
+<p><strong>Q4. Why MongoDB over MySQL for SHREE?</strong></p>
+<blockquote>
+<p>Product data is heterogeneous — lehengas, sarees, and sherwanis have different attributes. MongoDB&#39;s flexible schema allows this without table migrations. Arrays (gallery, reviews, details) are natural in documents.</p>
+</blockquote>
+<p><strong>Q5. What is a sub-document in Mongoose?</strong></p>
+<blockquote>
+<p>A document embedded inside another document — not a separate collection. SHREE examples: <code>savedAddresses[]</code> in User and <code>items[]</code> in Order.</p>
+</blockquote>
+<p><strong>Q6. How are orders linked to users?</strong></p>
+<blockquote>
+<p>Using <code>userId: { type: mongoose.Schema.Types.ObjectId, ref: &#39;User&#39; }</code> — similar to a foreign key. The <code>populate(&#39;userId&#39;, &#39;name email&#39;)</code> call resolves this reference in the admin orders view.</p>
+</blockquote>
+<p><strong>Q7. What is <code>populate()</code> in Mongoose?</strong></p>
+<blockquote>
+<p>It replaces an ObjectId reference with the actual document from the referenced collection. SHREE uses it in admin orders: <code>.populate(&#39;userId&#39;, &#39;name email&#39;)</code>.</p>
+</blockquote>
+<p><strong>Q8. What is the <code>pre(&#39;save&#39;)</code> hook in the User model?</strong></p>
+<blockquote>
+<p>A Mongoose middleware that runs before saving a document. SHREE uses it to hash the password with bcrypt before it&#39;s stored in the database.</p>
+</blockquote>
+<p><strong>Q9. What is Cloudinary and how is it integrated?</strong></p>
+<blockquote>
+<p>Cloudinary is a cloud media CDN. <code>multer</code> handles the multipart file upload, <code>multer-storage-cloudinary</code> streams it to Cloudinary, and the returned URL is saved in the Product&#39;s <code>image</code> field in MongoDB.</p>
+</blockquote>
+<p><strong>Q10. What is Firebase and what services does SHREE use?</strong></p>
+<blockquote>
+<p>Firebase is Google&#39;s app development platform. SHREE uses: Firebase Auth (Google Sign-In), Firestore (secondary database), Firebase Storage, and Firebase Hosting for frontend deployment. Project ID: <code>shree-studio-2026</code>.</p>
+</blockquote>
+<p><strong>Q11. What are Firestore Security Rules?</strong></p>
+<blockquote>
+<p>Rules defined in <code>firestore.rules</code> that control read/write access to Firestore collections. They act as server-side security without needing custom API code.</p>
+</blockquote>
+<p><strong>Q12. What is the difference between SQL and NoSQL?</strong></p>
+<blockquote>
+<p>SQL: relational, fixed schema, uses JOINs. NoSQL: flexible schema, document-based, scales horizontally. SHREE uses NoSQL because product data is heterogeneous and documents with arrays (reviews, gallery) map naturally.</p>
+</blockquote>
+<p><strong>Q13. What is indexing in MongoDB?</strong></p>
+<blockquote>
+<p>Indexes speed up queries by maintaining a sorted structure on a field. The <code>email</code> field in User has <code>unique: true</code> which auto-creates a unique index — preventing duplicates and enabling fast lookups.</p>
+</blockquote>
+<p><strong>Q14. What is the purpose of <code>.env</code> and <code>.env.example</code>?</strong></p>
+<blockquote>
+<p><code>.env</code> stores actual secrets (MONGO_URI, JWT_SECRET, Cloudinary keys) and is <code>.gitignore</code>d. <code>.env.example</code> is a safe template committed to the repo showing contributors which variables to configure.</p>
+</blockquote>
+<p><strong>Q15. How would you scale the database for 100,000 users?</strong></p>
+<blockquote>
+<p>Use MongoDB Atlas auto-scaling clusters (M10+), add indexes on frequently queried fields (<code>userId</code> in orders, <code>category</code> in products), enable point-in-time recovery, and use Atlas Search for full-text product search.</p>
+</blockquote>
+<hr>
+<h2>📋 SUMMARY — Who Presents What</h2>
+<table>
+<thead>
+<tr>
+<th>Presentation Section</th>
+<th>Person</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Project intro &amp; homepage demo</td>
+<td>Person A</td>
+</tr>
+<tr>
+<td>Product cards, cart, checkout demo</td>
+<td>Person A</td>
+</tr>
+<tr>
+<td>React architecture, Context API</td>
+<td>Person A</td>
+</tr>
+<tr>
+<td>Server setup, middleware pipeline</td>
+<td>Person B</td>
+</tr>
+<tr>
+<td>Auth flow (register/login/JWT)</td>
+<td>Person B</td>
+</tr>
+<tr>
+<td>API endpoints demo (Postman/browser)</td>
+<td>Person B</td>
+</tr>
+<tr>
+<td>Database schema walkthrough</td>
+<td>Person C</td>
+</tr>
+<tr>
+<td>Cloudinary &amp; Firebase setup</td>
+<td>Person C</td>
+</tr>
+<tr>
+<td>Deployment &amp; environment config</td>
+<td>Person C</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><em>SHREE Collective — Built by a team of 3. © 2026</em></p>
+</blockquote>
+
+</body>
+</html>
+    

@@ -1,0 +1,158 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <meta charset="utf-8">
+    <title>Role_B_Backend</title>
+    <style>
+        body { font-family: 'Calibri', sans-serif; font-size: 11pt; line-height: 1.5; color: #000; }
+        h1 { color: #2c3e50; font-size: 20pt; border-bottom: 2px solid #2c3e50; padding-bottom: 5px; }
+        h2 { color: #34495e; font-size: 16pt; margin-top: 20px; }
+        h3 { color: #7f8c8d; font-size: 14pt; }
+        p { margin-bottom: 10px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #bdc3c7; padding: 8px; text-align: left; }
+        th { background-color: #ecf0f1; }
+        blockquote { border-left: 4px solid #bdc3c7; padding-left: 15px; color: #555; font-style: italic; background-color: #f9f9f9; padding: 10px; margin: 10px 0; }
+        code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 10pt; }
+    </style>
+</head>
+<body>
+    <h1>SHREE Collective — 3-Person Team Walkthrough &amp; Viva Guide</h1>
+<blockquote>
+<p><strong>Project:</strong> SHREE — Luxury Indian Couture E-Commerce Platform
+<strong>Team:</strong> 3 Members | Frontend · Backend · Database &amp; Cloud</p>
+</blockquote>
+<hr>
+<h2>👥 TEAM DIVISION</h2>
+<table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Role</th>
+<th>Owns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Person A</strong></td>
+<td>Frontend Developer</td>
+<td>React UI, Pages, Cart, Animations, Routing</td>
+</tr>
+<tr>
+<td><strong>Person B</strong></td>
+<td>Backend Developer</td>
+<td>Node.js, Express API, Auth, Routes, Middleware</td>
+</tr>
+<tr>
+<td><strong>Person C</strong></td>
+<td>Database &amp; Cloud Engineer</td>
+<td>MongoDB, Mongoose Models, Cloudinary, Firebase, Deployment</td>
+</tr>
+</tbody></table>
+<hr>
+<h1>🅑 PERSON B — Backend Developer</h1>
+<h2>Introduction Script</h2>
+<blockquote>
+<p><em>&quot;I built the entire backend server for SHREE using Node.js and Express.js. My work includes designing and implementing all 16 REST API endpoints across 4 route groups, building the JWT authentication system, writing middleware for security and logging, and setting up the complete server infrastructure.&quot;</em></p>
+</blockquote>
+<h2>Contributions</h2>
+<ul>
+<li>Set up <strong>Express.js</strong> server with proper middleware pipeline</li>
+<li>Implemented <strong>CORS</strong> with a strict origin allowlist</li>
+<li>Built <strong>JWT authentication</strong> — register, login, token generation (30-day expiry)</li>
+<li>Implemented <strong>bcrypt password hashing</strong> with 12 salt rounds</li>
+<li>Built <code>protect()</code> middleware for JWT verification on private routes</li>
+<li>Built <code>adminOnly()</code> middleware for role-based access control</li>
+<li>Implemented all <strong>Product routes</strong> — GET all, GET by ID, POST (admin), PUT (admin), DELETE (admin), seed</li>
+<li>Implemented all <strong>Order routes</strong> — place order, get user orders, get single order, admin get all, update status</li>
+<li>Implemented all <strong>Auth routes</strong> — register, login, get me, add address</li>
+<li>Implemented all <strong>Inquiry routes</strong> — submit (public), get all (admin)</li>
+<li>Added <strong>Morgan</strong> HTTP request logger in dev mode</li>
+<li>Wrote the <strong>seed script</strong> (<code>seed.js</code>) to populate the database</li>
+<li>Set up <strong>environment variable</strong> management with <code>dotenv</code></li>
+<li>Configured the <strong>health check</strong> endpoint at <code>/api/health</code></li>
+</ul>
+<h2>How to Walk Through (Demo Script)</h2>
+<p><strong>Step 1 — Server Entry Point</strong></p>
+<blockquote>
+<p><em>&quot;Our server starts in <code>server.js</code>. It loads environment variables, connects to MongoDB, sets up middleware (CORS, JSON parser, Morgan logger), mounts all 4 route groups, and starts listening on port 5000.&quot;</em></p>
+</blockquote>
+<p><strong>Step 2 — Authentication Flow</strong></p>
+<blockquote>
+<p><em>&quot;When a user registers, we check if the email already exists. If not, we create the user — Mongoose automatically hashes the password via the <code>pre(&#39;save&#39;)</code> hook. We then return a JWT token. On login, we fetch the user with the password field (normally hidden), compare using bcrypt, and return a new token.&quot;</em></p>
+</blockquote>
+<p><strong>Step 3 — Protected Routes</strong></p>
+<blockquote>
+<p><em>&quot;Any route that requires login goes through the <code>protect()</code> middleware. It reads the Authorization header, verifies the JWT, fetches the user from the database, and attaches it to <code>req.user</code>. Admin routes additionally pass through <code>adminOnly()</code> which checks the role field.&quot;</em></p>
+</blockquote>
+<p><strong>Step 4 — Product API</strong></p>
+<blockquote>
+<p><em>&quot;Public users can GET all products and GET a single product. Only admins can create, update, or delete products. We also have a seed endpoint for bulk-loading the initial catalog.&quot;</em></p>
+</blockquote>
+<p><strong>Step 5 — Order Flow</strong></p>
+<blockquote>
+<p><em>&quot;When a logged-in user places an order, the backend receives items, total, payment method, and shipping address, creates the order with <code>status: pending</code>, and returns it. Admins can see all orders and update their status through the lifecycle: pending → confirmed → shipped → delivered.&quot;</em></p>
+</blockquote>
+<hr>
+<h2>🅑 Person B — Viva Questions</h2>
+<p><strong>Q1. What is Node.js?</strong></p>
+<blockquote>
+<p>Node.js is a JavaScript runtime built on Chrome&#39;s V8 engine that allows running JavaScript on the server. SHREE&#39;s backend runs on Node.js ≥22.</p>
+</blockquote>
+<p><strong>Q2. What is Express.js?</strong></p>
+<blockquote>
+<p>Express is a minimal web framework for Node.js. I used it to define REST API routes, apply middleware, and send JSON responses.</p>
+</blockquote>
+<p><strong>Q3. What is middleware? Name the ones used in SHREE.</strong></p>
+<blockquote>
+<p>Functions that run during the request-response cycle: <code>cors()</code>, <code>express.json()</code>, <code>morgan()</code>, <code>protect()</code>, <code>adminOnly()</code>.</p>
+</blockquote>
+<p><strong>Q4. What is JWT and how does it work in SHREE?</strong></p>
+<blockquote>
+<p>JWT is a signed token with 3 parts: header.payload.signature. On login, the server creates a token using <code>jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: &#39;30d&#39; })</code>. The client sends it in <code>Authorization: Bearer &lt;token&gt;</code>. The <code>protect()</code> middleware verifies it with <code>jwt.verify()</code>.</p>
+</blockquote>
+<p><strong>Q5. How does the <code>protect()</code> middleware work?</strong></p>
+<blockquote>
+<ol>
+<li>Reads the Authorization header, extracts the token. 2. Calls <code>jwt.verify()</code>. 3. Fetches the user from MongoDB. 4. Attaches to <code>req.user</code>. 5. Returns 401 if token is missing or invalid.</li>
+</ol>
+</blockquote>
+<p><strong>Q6. What is bcrypt and why is it used?</strong></p>
+<blockquote>
+<p>bcrypt is a one-way password hashing library. SHREE uses 12 salt rounds. Passwords are hashed in the Mongoose <code>pre(&#39;save&#39;)</code> hook before storing. On login, <code>bcrypt.compare()</code> checks the plain password against the stored hash.</p>
+</blockquote>
+<p><strong>Q7. What is <code>select: false</code> on the password field?</strong></p>
+<blockquote>
+<p>It prevents the password from being returned in any Mongoose query by default. Only the login route fetches it explicitly with <code>.select(&#39;+password&#39;)</code>.</p>
+</blockquote>
+<p><strong>Q8. What is CORS and why is it configured in SHREE?</strong></p>
+<blockquote>
+<p>Cross-Origin Resource Sharing is a browser security policy blocking requests from different origins. SHREE allows only whitelisted origins (localhost ports + production URL) to prevent unauthorized API access.</p>
+</blockquote>
+<p><strong>Q9. What is the difference between GET, POST, PUT, DELETE?</strong></p>
+<blockquote>
+<p>GET — retrieve, POST — create, PUT — update, DELETE — remove. SHREE uses all four across its 16 endpoints.</p>
+</blockquote>
+<p><strong>Q10. What is <code>dotenv</code> and why is it used?</strong></p>
+<blockquote>
+<p>It loads secrets from a <code>.env</code> file into <code>process.env</code>, keeping credentials like <code>MONGO_URI</code>, <code>JWT_SECRET</code>, and Cloudinary keys out of source code.</p>
+</blockquote>
+<p><strong>Q11. What is Role-Based Access Control?</strong></p>
+<blockquote>
+<p>RBAC restricts access based on user role. SHREE has <code>collector</code> (default) and <code>admin</code>. The <code>adminOnly()</code> middleware checks <code>req.user.role === &#39;admin&#39;</code> — returning 403 if not.</p>
+</blockquote>
+<p><strong>Q12. Can a user bypass admin routes from the frontend?</strong></p>
+<blockquote>
+<p>No. Even if someone manually calls an admin endpoint, <code>adminOnly()</code> on the server checks the verified JWT&#39;s role. Since the JWT is signed with <code>JWT_SECRET</code>, the role cannot be forged client-side.</p>
+</blockquote>
+<p><strong>Q13. What is Morgan and what does it log?</strong></p>
+<blockquote>
+<p>Morgan is an HTTP logger middleware. In dev mode it logs: method, URL, status code, and response time for every request — e.g. <code>GET /api/products 200 5ms</code>.</p>
+</blockquote>
+<p><strong>Q14. What is the order status lifecycle?</strong></p>
+<blockquote>
+<p><code>pending → confirmed → shipped → delivered</code> or <code>cancelled</code>. Admins update it via <code>PUT /api/orders/:id/status</code>.</p>
+</blockquote>
+
+</body>
+</html>
+    

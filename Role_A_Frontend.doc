@@ -1,0 +1,179 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <meta charset="utf-8">
+    <title>Role_A_Frontend</title>
+    <style>
+        body { font-family: 'Calibri', sans-serif; font-size: 11pt; line-height: 1.5; color: #000; }
+        h1 { color: #2c3e50; font-size: 20pt; border-bottom: 2px solid #2c3e50; padding-bottom: 5px; }
+        h2 { color: #34495e; font-size: 16pt; margin-top: 20px; }
+        h3 { color: #7f8c8d; font-size: 14pt; }
+        p { margin-bottom: 10px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #bdc3c7; padding: 8px; text-align: left; }
+        th { background-color: #ecf0f1; }
+        blockquote { border-left: 4px solid #bdc3c7; padding-left: 15px; color: #555; font-style: italic; background-color: #f9f9f9; padding: 10px; margin: 10px 0; }
+        code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 10pt; }
+    </style>
+</head>
+<body>
+    <h1>SHREE Collective — 3-Person Team Walkthrough &amp; Viva Guide</h1>
+<blockquote>
+<p><strong>Project:</strong> SHREE — Luxury Indian Couture E-Commerce Platform
+<strong>Team:</strong> 3 Members | Frontend · Backend · Database &amp; Cloud</p>
+</blockquote>
+<hr>
+<h2>👥 TEAM DIVISION</h2>
+<table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Role</th>
+<th>Owns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Person A</strong></td>
+<td>Frontend Developer</td>
+<td>React UI, Pages, Cart, Animations, Routing</td>
+</tr>
+<tr>
+<td><strong>Person B</strong></td>
+<td>Backend Developer</td>
+<td>Node.js, Express API, Auth, Routes, Middleware</td>
+</tr>
+<tr>
+<td><strong>Person C</strong></td>
+<td>Database &amp; Cloud Engineer</td>
+<td>MongoDB, Mongoose Models, Cloudinary, Firebase, Deployment</td>
+</tr>
+</tbody></table>
+<hr>
+<h1>🅐 PERSON A — Frontend Developer</h1>
+<h2>Introduction Script</h2>
+<blockquote>
+<p><em>&quot;I was responsible for the entire frontend of SHREE — building the user interface using React 19 and Vite. My work includes everything the user sees and interacts with: the hero section, product carousel, cart drawer, checkout flow, and all 8 pages. I also designed the complete CSS design system with luxury aesthetics — animations, skeleton loaders, and a fully responsive layout.&quot;</em></p>
+</blockquote>
+<h2>Core Technical Implementations</h2>
+<h3>1. Global State Management (Context API)</h3>
+<p>Instead of passing props down multiple levels (prop drilling), I implemented a centralized <code>CartContext</code>. It wraps the entire application and provides a single source of truth for:</p>
+<ul>
+<li><code>cartItems</code> (Array of objects in the bag)</li>
+<li><code>cartCount</code> &amp; <code>cartTotal</code> (Derived dynamic states)</li>
+<li>Core actions: <code>addToCart</code>, <code>removeFromCart</code>, and <code>updateQuantity</code>.
+This allows any component, from the Navbar bag icon to the Product Modal, to seamlessly read and update the cart.</li>
+</ul>
+<h3>2. Performance Optimization (Lazy Loading)</h3>
+<p>To ensure the site loads quickly despite having heavy luxury video assets, I implemented an <code>IntersectionObserver</code> via the <code>LazyVideo</code> component.</p>
+<ul>
+<li><strong>How it works:</strong> The videos in the 4-grid section do not load on initial page load. The observer monitors when the user scrolls near the grid (within 200px).</li>
+<li><strong>Result:</strong> Only when the user is about to see the videos does the <code>src</code> attribute populate and the video plays. This saves massive initial bandwidth.</li>
+</ul>
+<h3>3. User Experience (Skeleton Loaders &amp; Offline Fallbacks)</h3>
+<p>Fetching products from the backend takes time. I prioritized UX by handling these states gracefully:</p>
+<ul>
+<li><strong>Skeleton Loaders:</strong> I designed CSS-based animated <code>HeroSkeleton</code>, <code>ProductCardSkeleton</code>, and <code>VideoSkeleton</code> components. These show a shimmering grey layout while data loads, preventing jarring layout shifts.</li>
+<li><strong>Offline Fallback:</strong> I integrated a local data fallback (<code>products.js</code>). If the backend server fails or is offline, the frontend catches the error and seamlessly falls back to serving local dummy data, ensuring the app never appears broken.</li>
+</ul>
+<h3>4. Advanced UI Features &amp; Animations</h3>
+<ul>
+<li><strong>Mega Menu:</strong> Built a complex hover-based mega menu for desktop navigation that maps hierarchical category data alongside dynamic visual showcase images.</li>
+<li><strong>Scroll Reveal Animations:</strong> Implemented a scroll event listener that adds an <code>.active</code> class to elements with a <code>.reveal</code> tag as they enter the viewport, triggering smooth CSS fade-up transitions.</li>
+<li><strong>Modals &amp; Drawers:</strong> Built custom overlays (<code>AuthModal</code>, <code>CartDrawer</code>) using fixed positioning. I specifically solved z-index and backdrop-blur styling issues to ensure luxury, clean overlays without screen distortion.</li>
+</ul>
+<h2>Complete Contributions List</h2>
+<ul>
+<li>Built the React SPA using <strong>Vite</strong> as the build tool</li>
+<li>Created the <strong>mega-menu navigation</strong> with hover dropdowns and mobile sidebar</li>
+<li>Implemented the <strong>hero video section</strong> with autoplay and poster fallback</li>
+<li>Built the <strong>product carousel</strong> with auto-scroll, pause on hover, and prev/next controls</li>
+<li>Designed all <strong>skeleton loaders</strong> (<code>HeroSkeleton</code>, <code>ProductCardSkeleton</code>, <code>VideoSkeleton</code>)</li>
+<li>Implemented <strong>IntersectionObserver lazy loading</strong> for the 4-video grid section</li>
+<li>Built the <strong>CartDrawer</strong> — slide-in panel with quantity controls and size selection</li>
+<li>Built the <strong>AuthModal</strong> — inline login/register popup</li>
+<li>Built the <strong>ProductDetailModal</strong> — full-screen product detail with image gallery, tabs, and reviews</li>
+<li>Set up <strong>React Router DOM</strong> for all 8 pages</li>
+<li>Managed global <strong>cart state</strong> using Context API (<code>CartContext</code>)</li>
+<li>Added the <strong>account button</strong> in the navbar (user avatar when logged in)</li>
+<li>Implemented <strong>scroll-reveal animations</strong> using IntersectionObserver</li>
+<li>Built pages: <code>Home</code>, <code>Archive</code>, <code>Artisans</code>, <code>Vision</code>, <code>Exhibitions</code>, <code>Inquiries</code>, <code>Auth</code>, <code>Dashboard</code>, <code>Checkout</code></li>
+</ul>
+<h2>How to Walk Through (Demo Script)</h2>
+<p><strong>Step 1 — Homepage</strong></p>
+<blockquote>
+<p><em>&quot;When the site loads, you see a full-screen hero video playing automatically. While the page data loads, skeleton loaders are shown instead of blank spaces — this is a UX best practice. The hero has a gradient overlay and a call-to-action button.&quot;</em></p>
+</blockquote>
+<p><strong>Step 2 — Product Carousel</strong></p>
+<blockquote>
+<p><em>&quot;Below the hero is our product carousel. It auto-scrolls every 4 seconds and pauses when you hover. Each card shows the product image, and on hover reveals the category tag, name, price, size picker, and an &#39;Add To Bag&#39; button.&quot;</em></p>
+</blockquote>
+<p><strong>Step 3 — Lazy Video Grid</strong></p>
+<blockquote>
+<p><em>&quot;The 4-video grid uses IntersectionObserver — videos only load and play when they scroll into view. This significantly improves page load performance.&quot;</em></p>
+</blockquote>
+<p><strong>Step 4 — Navigation</strong></p>
+<blockquote>
+<p><em>&quot;The navbar is transparent on the hero and turns white on scroll. On desktop, hovering &#39;The Collective&#39; or &#39;Artisans&#39; opens a mega-menu with category links and a preview image. On mobile, a sidebar slides in.&quot;</em></p>
+</blockquote>
+<p><strong>Step 5 — Account Button</strong></p>
+<blockquote>
+<p><em>&quot;In the top-right, there&#39;s an account icon. If you&#39;re not logged in, it shows a person icon and takes you to the login page. If you&#39;re logged in, it shows a gold circle with your name initial and takes you to the dashboard.&quot;</em></p>
+</blockquote>
+<p><strong>Step 6 — Cart &amp; Checkout</strong></p>
+<blockquote>
+<p><em>&quot;Clicking the bag icon opens the cart drawer. Items show image, name, price, size, and quantity controls. Clicking &#39;Secure Checkout&#39; checks if you&#39;re logged in — if not, the login modal appears. If logged in, it goes to the Checkout page where you select address and payment method.&quot;</em></p>
+</blockquote>
+<hr>
+<h2>🅐 Person A — Viva Questions</h2>
+<p><strong>Q1. What is React and why did you use it for SHREE?</strong></p>
+<blockquote>
+<p>React is a JavaScript library for building component-based UIs. I used it because it allows breaking the UI into reusable components (ProductCard, CartDrawer, AuthModal) and efficiently updates the DOM using a Virtual DOM.</p>
+</blockquote>
+<p><strong>Q2. What build tool did you use and why?</strong></p>
+<blockquote>
+<p>Vite. It uses native ES modules for instant dev server startup and hot module replacement (HMR), making development much faster than Create React App.</p>
+</blockquote>
+<p><strong>Q3. What React Hooks did you use?</strong></p>
+<blockquote>
+<p><code>useState</code> for local state (loading, selectedSize, cartItems), <code>useEffect</code> for API calls and scroll listeners, <code>useRef</code> for the carousel and video DOM elements, <code>useNavigate</code> and <code>useLocation</code> from React Router.</p>
+</blockquote>
+<p><strong>Q4. What is Context API and how did you use it?</strong></p>
+<blockquote>
+<p>Context API lets you share state globally without prop drilling. I created <code>CartContext</code> which provides <code>cartItems</code>, <code>cartCount</code>, <code>cartTotal</code>, <code>addToCart</code>, <code>removeFromCart</code>, and <code>updateQuantity</code> to all components.</p>
+</blockquote>
+<p><strong>Q5. What is lazy loading and where did you implement it?</strong></p>
+<blockquote>
+<p>Lazy loading defers resource loading until needed. I used <code>IntersectionObserver</code> in the <code>LazyVideo</code> component — videos only load when scrolled into view, saving initial bandwidth.</p>
+</blockquote>
+<p><strong>Q6. What is a skeleton loader?</strong></p>
+<blockquote>
+<p>A placeholder UI (grey animated boxes) shown while async data loads, preventing layout shift and improving perceived performance. SHREE has <code>HeroSkeleton</code>, <code>ProductCardSkeleton</code>, and <code>VideoSkeleton</code>.</p>
+</blockquote>
+<p><strong>Q7. How does the scroll-reveal animation work?</strong></p>
+<blockquote>
+<p>Elements with the <code>.reveal</code> class are initially invisible. A <code>scroll</code> event listener uses <code>getBoundingClientRect()</code> to detect when they enter the viewport (within 100px), then adds the <code>.active</code> class which triggers a CSS fade-up animation.</p>
+</blockquote>
+<p><strong>Q8. What is React Router and what routes does SHREE have?</strong></p>
+<blockquote>
+<p>React Router enables client-side routing without page reloads. SHREE routes: <code>/</code> Home, <code>/archive</code> Gallery, <code>/artisans</code>, <code>/vision</code>, <code>/exhibitions</code>, <code>/inquiries</code>, <code>/auth</code>, <code>/dashboard</code>, <code>/checkout</code>.</p>
+</blockquote>
+<p><strong>Q9. What is the Virtual DOM?</strong></p>
+<blockquote>
+<p>A lightweight in-memory copy of the real DOM. React compares it after state changes (diffing) and only updates the changed parts in the real DOM — making updates fast.</p>
+</blockquote>
+<p><strong>Q10. How does the cart persist across pages?</strong></p>
+<blockquote>
+<p>The cart lives in React Context (in-memory). Since SHREE is an SPA, navigation doesn&#39;t reload the page, so the Context state persists. Refreshing clears the cart as it&#39;s not saved to <code>localStorage</code>.</p>
+</blockquote>
+<p><strong>Q11. How did you handle the product fallback when the server is offline?</strong></p>
+<blockquote>
+<p>In <code>Home.jsx</code>, <code>fetchProducts()</code> first calls the API. If it throws an error or returns empty, it catches the error and sets products to the local <code>products.js</code> data file as a fallback.</p>
+</blockquote>
+<p><strong>Q12. What is the difference between <code>useEffect</code> with and without a dependency array?</strong></p>
+<blockquote>
+<p>Without <code>[]</code>: runs after every render. With <code>[]</code>: runs only once on mount (like componentDidMount). With <code>[dep]</code>: runs when <code>dep</code> changes.</p>
+</blockquote>
+
+</body>
+</html>
+    
