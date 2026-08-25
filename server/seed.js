@@ -54,7 +54,7 @@ const products = [
     category: 'Serenade - Bridal',
     description: 'High-end rani pink lehenga in organza base with heavy gold zardozi embroidery.',
     image: '/images/catalog/rani-pink.jpg',
-    videoUrl: 'https://player.vimeo.com/external/530514102.hd.mp4?s=4567ACDDDEF4927E96A53353933985FB&profile_id=175',
+    videoUrl: 'https://vjs.zencdn.net/v/oceans.mp4',
     details: ['Organza Silk', 'Heavy Zardozi', 'Bridal Collection'],
     inStock: true,
   },

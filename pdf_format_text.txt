@@ -1,0 +1,302 @@
+ 
+ 
+ 
+ 
+ 
+FORMAT  FOR  
+PREPARATION  OF 
+UG PROJECT  
+REPORT  
+  
+1. ARRANGEMENT OF CONTENTS:  
+The sequence  in which  the project  report  material  should  be arranged  and bound  may be 
+as follows:  
+TITLE  PAGE  
+BONAFIDE  CERTIFICATE  
+ACKNOWLEDGEMENT  
+TABLE OF  CONTENTS  
+LIST OF FIGURES  
+LIST  OF TABLES  
+ABSTRACT  
+GRAPHICAL  ABSTRACT  
+ABBREVIATIONS  
+SYMBOLS  
+Chapter 1:  Introduction  
+(Including  Identification  of client  & need,  Relevant  contemporary  issues,  Problem  Identification,  Task  Identification,  
+Timeline, organization of  the report)  
+Chapter 2: Literature survey  
+Timeline  of the reported  problem  as investigated  throughout  the world,  bibliometric  analysis,  proposed  solutions  by 
+different researchers, summary  linking  literature review with  the project,  Problem Definition, Goals  and Objectives.  
+Chapter 3: Design flow/Process  
+Concept  Generation,  Evaluation  & Selection  of Specifications/Features,  Design  Constraints – Regulations,  Economic,  
+Environmental,  Health,  manufacturability,  Safety,  Professional,  Ethical,  Social  & Political  Issues  considered  in 
+design,  Analysis  and Feature  finalization  subject  to constraints,  Design  Flow  (at least 2 alternative  designs  to make  
+the project),  Best Design  selection  (supported  with comparison  and reason)  and Implementation  plan ((Flowchart  
+/algorithm/ detailed  block diagram).  
+Chapter 4 Results analysis  and validation  
+Implementation  of design  using  Modern  Engineering  tools  in analysis,  design  drawings/schematics/  solid  models,  
+report  preparation, project management, and  communication, Testing/characterization/interpretation/data validation.  
+Chapter  5: Conclusion and future  work  
+deviation from expected results  and way ahead  
+References  
+Appendix  
+User  manual  (Complete  step by step instructions along with pictu res necessary to run the project)  
+Achievements  
+The table  and figures  shall be introduced  in the appropriate  places.  
+2. PAGE  DIMENSION  AND  BINDING  SPECIFICATIONS:  
+• The dimension  of the project  report  should  be in A4 size. 
+• The project  report  should  be bound  using  flexible  cover  of the  thick  white  art paper.  
+• The cover  should  be printed  in black letters and the text for printing  should  be 
+identical.  
+3. PREPARATION  FORMAT:  
+3.1 Cover  Page  & Title  Page  – A specimen  copy  of the Cover  page & Title page 
+of the project  report  are given  in Appendix  1. 
+3.2 Bonafide  Certificate  
+• The Bonafide  Certificate  shall be in double  line spacing  using  Font Style  
+Times  New Roman  and Font Size 14, as per the format  in Appendix  2/2A.  
+• The certificate  shall carry  the supervisor’s  signature  and shall be followed  
+by the supervisor’s  name,  academic  designation  (not any other  
+responsibilities  of administrative  nature),  department  and full address  of 
+the institution  where  the supervisor  has guided  the student.  
+• The term ‘SUPERVISOR’  must  be typed  in capital  letters  between  the 
+supervisor’s  name  and academic  designation.  
+• If the project  was carried  out in an Industry,  certificate  from  the same  
+industry  in their format  should  be attached  in the report.  
+3.3 Abstract  – Abstract should be one page synopsis of the project report typed 
+double line spacing, Font Style Times New Roman and Font Size 14 . 
+3.4 Table  of Contents  
+• The table  of contents  should  list all material  following  it as well as any 
+material  which  precedes  it. 
+• The title page and Bonafide  Certificate  will not find a place  among  the 
+items  listed  in the Table  of Contents  but the page numbers  of which  are 
+in lower  case Roman  letters.  
+• One and a half spacing  should  be adopted  for typing  the matter  under  this 
+head.  
+• A specimen  copy  of the Table  of Contents  of the project  report  is given  in 
+Appendix  3. 
+3.5 List of Tables  
+• The list should  use exactly  the same  captions  as they appear  above  the 
+tables  in the text. 
+• One and a half spacing  should  be adopted  for typing  the matter  under  this 
+head.  
+3.6 List of Figures  
+• The list should  use exactly  the same  captions  as they appear  below  the 
+figures  in the text. 
+• One and a half spacing  should  be adopted  for typing  the matter  under  this 
+head.  
+3.7 List of Symbols,  Abbreviations  and Nomenclature  
+• One and a half spacing  should  be adopted  or typing  the matter  under  this 
+head.  
+• Standard  symbols,  abbreviations  etc. should  be used.  
+3.8 Chapters  – The chapters  may be broadly  divided  into 3 parts:  (i) Introductory  
+chapter,  (ii) Chapters  developing  the main  theme  of the project  work  (iii) and 
+Conclusion.  
+The main  text will be divided  into several  chapters  and each chapter  may 
+be further  divided  into several  divisions  and sub-divisions.  
+• Each  chapter  should  be given  an appropriate  title. 
+• Tables  and figures  in a chapter  should  be placed  in the immediate  vicinity  of 
+the reference  where  they are cited.  
+3.9 Appendices  – Appendices  are provided  to give supplementary  information,  which  is 
+included  in the main  text may serve  as a distraction  and cloud  the central  theme.  
+• Appendices  should  be numbered  using  Arabic  numerals,  e.g., Appendix -1, 
+Appendix -2, etc. 
+• Appendices,  Tables  and References  appearing  in appendices  should  be 
+numbered  and referred  to as appropriate  places  just as in the case of chapters.  
+• Appendices  shall carry  the title of the work  reported  and the same  title 
+shall be made  in the contents  page also. 
+3.10 List of References  
+• The listing  of references  should  be typed  4 spaces  below  the heading  
+“REFERENCES”  in alphabetical  order  in single  spacing  left – justified.  
+• The reference  material  should  be listed  in the alphabetical  order  of the first 
+author.  
+• The name  of the author/authors  should  be immediately  followed  by the 
+year and other  details.  
+A typical  illustrative  list given  below  relates  to the citation  example  quoted  above.  
+REFERENCES  
+1. Ariponnammal,  S. and Natarajan,  S. (1994)  ‘Transport  Phonomena  of Sm Sel – X 
+Asx’,  Pramana  – Journal  of Physics  Vol.42,  No.1,  pp.421 -425. 
+2. Barnard,  R.W.  and Kellogg,  C. (1980)  ‘Applications  of Convolution  Operators  to 
+Problems  in Univalent  Function  Theory’,  Michigan  Mach,  J., Vol.27,  pp.81– 94. 
+3. Shin,  K.G.  and Mckay,  N.D.  (1984)  ‘Open  Loop  Minimum  Time  Control  of 
+Mechanical  Manipulations  and its Applications ’, Proc.Amer.Contr.Conf. , San Diego,  
+CA, pp. 1231 -1236.  
+3.11 Table and figures  
+• By the word  Table,  is meant  tabulated  numerical  data in the body  of the 
+project report as well as in the appendices.  
+• All other  non-verbal  materials  used in the body  of the project  work  and 
+appendices  such as charts,  graphs,  maps,  photographs  and diagrams  may be 
+designated as figures.  
+4 TYPING INSTRUCTIONS:  
+• The impression  on the typed  copies  should  be black  in colour.  
+• One and a half spacing  should  be used for typing  the general  text. The general  text 
+shall be typed  in the Font style ‘Times  New Roman’  and Font size  12. 
+• Name  of the Chapter  shall be typed  in the Font style ‘Times  New Roman’ , BOLD  
+and Font size  16. 
+• Heading  shall be typed  in the Font style ‘Times  New Roman’ , BOLD  and Font size 14. 
+• Sub - Heading  shall be typed  in the Font style ‘Times  New Roman’ , BOLD  and Font size 12. 
+ 
+ 
+ 
+SAMPLE 
+DOCUMENT  
+  
+TITLE  OF PROJECT  REPORT  
+<Font  Size 18><1.5  line spacing> <Font  Style  Times  New  Roman  – Bold>  
+ 
+ 
+A PROJECT  REPORT  
+<Font  Size 14><Font  Style  Times  New  Roman  – Bold>  
+ 
+Submitted  by 
+<Font  Size 14><Italic> <Font  Style  Times  New  Roman  – Bold>  
+ 
+NAME  OF THE  CANDIDATE(S)  
+<Font  Size 16><Font  Style  Times  New  Roman  – Bold>  
+ 
+in partial  fulfillment  for the award  of the degree  of 
+<Font  Size 14><1.5  line spacing><Italic> <Font  Style  Times  New  Roman  – Bold>  
+ 
+NAME  OF THE  DEGREE  
+<Font  Size 16><Font Style Times New Roman – Bold>  
+ 
+IN 
+ 
+BRANCH  OF STUDY  
+<Font  Size 14><Font Style Times New Roman>  
+ 
+ 
+Chandigarh  University  
+MONTH  & YEAR  
+<Font  Size 14> 
+
+TITLE  OF PROJECT  REPORT  
+ 
+A PROJECT  REPORT  
+ 
+ 
+Submitted  by 
+ 
+ 
+John Doe (UID)  
+Jane Doe (UID)  
+ 
+in partial  fulfillment  for the award  of the degree  of 
+ 
+ 
+BACHELOR  OF ENGINEERING  
+ 
+IN 
+ 
+ELECTRONICS  ENGINEERING  
+ 
+ 
+Chandigarh  University  
+ 
+ 
+MAY  2022  
+
+ 
+ 
+BONAFIDE  CERTIFICATE  
+<Font  Style  Times  New Roman  – size -16> 
+ 
+<Font  Style  Times  New Roman  – size -14> 
+Certified  that this project  report  “…… …. TITLE  OF THE  
+PROJECT………… ….” is the bonafide  work  of “…………..NAME  OF 
+THE  CANDIDATE(S).…………”   who carried  out the project  work  under  
+my/our  supervision.  
+ 
+ 
+<<Signature  of the HoD>>  
+SIGNATURE  
+ 
+<<Name  of the Head  of the Department>>  
+ 
+ 
+HEAD  OF THE  DEPARTMENT  
+ 
+<<Department>>  <<Signature  of the Supervisor>>  
+SIGNATURE  
+ 
+<<Name>>  
+SUPERVISOR  
+ 
+<<Academic  Designation>>  
+ 
+<<Department>>  
+ 
+ 
+ 
+ 
+Submitted  for the project  viva-voce examination  held on  
+ 
+ 
+ 
+ 
+INTERNAL  EXAMINER  EXTERNAL  EXAMINER  
+  
+
+TABLE OF CONTENTS  
+List of Figures  ................................ ................................ ................................ ..............  i 
+List of Tables  ................................ ................................ ................................ ..............  ii 
+Abstract  ................................ ................................ ................................ ......................  iii 
+Graphical Abstract  ................................ ................................ ................................ ... iv 
+Abbrevati ons ................................ ................................ ................................ ..............  v 
+Symbols  ................................ ................................ ................................ ......................  vi 
+Chapter  1.  ................................ ................................ ................................ ..................  4 
+1.1  ................................ ................................ ................................ ................................  5 
+1.2  ................................ ................................ ................................ ................................ ..  
+1.2.1  ................................ ................................ ................................ ..........................   
+1.3  ................................ ................................ ................................ ................................ ..  
+1.3.1  ................................ ................................ ................................ ..........................   
+1.3.2  ................................ ................................ ................................ ..........................   
+Chapter 2 .  ................................ ................................ ................................ ....................   
+2.1  ................................ ................................ ................................ ................................ .. 
+ ................................ ................................ ................................ ................................ ..  
+2.2  ................................ ................................ ................................ ................................ .. 
+ ................................ ................................ ................................ ................................ ..  
+Chapter 3 .  ................................ ................................ ................................ ....................   
+Chapter 4 . ………………………….………………………………………...  
+Chapter 5. ……………………………………………………………………  
+References  (If Any)  ................................ ................................ ................................ ......  
+ 
+  
+List of Figures  
+Figure 3 .1 ………………………………………………………………… ……………… . 
+Figure 3.2 ………………………………………………………………………………….  
+Figure 4.1 …………………………………………………………………………….……  
+  
+List of Tables  
+Table 3 .1 ………………………………………………………………………………….  
+Table 3.2 ………………………………………………………………………………….  
+Table 4.1 …………………………………………………………………………….……  
+  
+ABSTRACT  
+----------------------------  New Page -------------------------  
+GRAPHICAL  ABSTRACT  
+----------------------------  New Page -------------------------  
+ABBREVIATIONS   
+----------------------------  New Page -------------------------  
+SYMBOLS  
+----------------------------  New Page -------------------------  
+  
+CHAPTER -No  
+(Size-16, New times Roman, BOLD, Centered)  
+NAME OF CHAPTER  
+(Size-16, New times Roman, BOLD, Centered)  
+1.1. Main Heading (Size -14, New times Roman, BOLD, Left Aligned)  
+Paragraph Text (Size -12, New times Roman, Line spacing, 1.5 , Justified ) 
+ 
+1.1.1.  Subheading (Size -12, New times Roman, BOLD , Left Aligned)  
+Paragraph Text (Size -12, New times Roman, Line spacing, 1.5)  
+ 
+Figure 1: Title of the Figure (Size -10, New times Roman, BOLD)  
+ 
+ 
+ 
+Table 1: Caption of the Table  (Size -10, New times Roman, BOLD)  
+     
+     
+     
+  
+Figure  

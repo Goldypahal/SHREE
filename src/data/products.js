@@ -6,7 +6,7 @@ export const products = [
     category: 'In Her Moment',
     description: 'A pink silk lehenga featuring red and gold zardozi, dori, and silk thread embroidered kalis with sequins.',
     image: '/images/catalog/pink-lehenga.jpg',
-    videoUrl: 'https://player.vimeo.com/external/517658760.hd.mp4?s=330c6a2f07ef466037b58941785f76f4e3c15f9b&profile_id=175',
+    videoUrl: 'https://res.cloudinary.com/demo/video/upload/elephants.mp4',
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const products = [
     category: 'Serenade - Bridal',
     description: 'High-end rani pink lehenga in organza base with heavy gold zardozi embroidery.',
     image: '/images/catalog/bridal-gold-red.png',
-    videoUrl: 'https://player.vimeo.com/external/530514102.hd.mp4?s=4567ACDDDEF4927E96A53353933985FB&profile_id=175',
+    videoUrl: 'https://vjs.zencdn.net/v/oceans.mp4',
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const products = [
     category: 'Noctelle',
     description: 'A deep black silk lehenga with elaborate silver zardozi work.',
     image: '/images/catalog/evening-black-silver.png',
-    videoUrl: 'https://player.vimeo.com/external/403003043.hd.mp4?s=123617300c007786438687a7f45a7a1c38e6e584&profile_id=175',
+    videoUrl: 'https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4',
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const products = [
     category: 'Sufiyaana',
     description: 'Ivory white lehenga with authentic Chikankari-inspired thread work.',
     image: '/images/catalog/ivory-chikankari-new.png',
-    videoUrl: 'https://player.vimeo.com/external/391030043.hd.mp4?s=6a2f07ef466037b58941785f76f4e3c15f9b&profile_id=175',
+    videoUrl: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
   },
   {
     id: 5,

@@ -195,10 +195,10 @@ const ProductCard = ({ product }) => {
 
 // LazyVideoGrid — grid videos only load & play when scrolled into view
 const GRID_VIDEOS = [
-  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/20f60df686684776b5563f340775bce0/20f60df686684776b5563f340775bce0.HD-1080p-7.2Mbps-63005057.mp4?v=0", poster: "/images/catalog/pink-lehenga.jpg", label: "In Her Moment", href: "/archive" },
-  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/6896323f8e1c49c5b6fdddb611577180/6896323f8e1c49c5b6fdddb611577180.HD-1080p-7.2Mbps-52878130.mp4?v=0", poster: "/images/catalog/rani-pink.jpg", label: "Studio Craft", href: "/artisans" },
-  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/53f6a02bc5b443989356d04796895b8c/53f6a02bc5b443989356d04796895b8c.HD-1080p-7.2Mbps-61223084.mp4?v=0", poster: "/images/catalog/black-zardozi.jpg", label: "Noctelle Edit", href: "/archive" },
-  { src: "https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/20f60df686684776b5563f340775bce0/20f60df686684776b5563f340775bce0.HD-1080p-7.2Mbps-63005057.mp4?v=0", poster: "/images/catalog/marwari-lehenga.jpg", label: "Heritage Bridal", href: "/archive" },
+  { src: "https://res.cloudinary.com/demo/video/upload/elephants.mp4", poster: "/images/catalog/grid-1.jpg", label: "In Her Moment", href: "/archive" },
+  { src: "https://vjs.zencdn.net/v/oceans.mp4", poster: "/images/catalog/grid-2.jpg", label: "Studio Craft", href: "/artisans" },
+  { src: "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4", poster: "/images/catalog/grid-3.jpg", label: "Noctelle Edit", href: "/archive" },
+  { src: "https://media.w3.org/2010/05/sintel/trailer.mp4", poster: "/images/catalog/grid-4.jpg", label: "Heritage Bridal", href: "/archive" },
 ];
 
 function LazyVideo({ src, poster, label, href }) {
@@ -333,8 +333,8 @@ function Home() {
           playsInline 
           className="hero-video"
           preload="auto"
-          poster="/images/catalog/gallery-hero.jpg"
-          src="https://www.tamannapunjabikapoor.com/cdn/shop/videos/c/vp/a8127fab6c7c4761b4d4129d0b410331/a8127fab6c7c4761b4d4129d0b410331.HD-1080p-4.8Mbps-63953119.mp4?v=0"
+          poster="/images/catalog/hero-fashion-bg.jpg"
+          src="https://vjs.zencdn.net/v/oceans.mp4"
         />
 
         <div className="hero-content">
